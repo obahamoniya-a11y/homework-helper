@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Homework Helper</title>
@@ -11,154 +13,229 @@
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f4f7ff;
+            background: #f5f7ff;
             color: #222;
         }
 
         header {
             background: #4f46e5;
             color: white;
-            padding: 20px;
             text-align: center;
+            padding: 35px 15px;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 32px;
+            font-size: 38px;
+            margin-bottom: 10px;
         }
 
         header p {
-            margin: 8px 0 0;
+            font-size: 18px;
         }
 
         nav {
             background: white;
-            padding: 12px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        nav button {
-            background: none;
+        nav a {
+            text-decoration: none;
             color: #4f46e5;
             font-weight: bold;
         }
 
+        nav a:hover {
+            text-decoration: underline;
+        }
+
         .container {
-            max-width: 900px;
+            width: 90%;
+            max-width: 1100px;
             margin: auto;
-            padding: 25px;
         }
 
-        .section {
-            display: none;
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        section {
+            padding: 50px 0;
         }
 
-        #home {
-            display: block;
+        .hero {
+            text-align: center;
         }
 
-        h2 {
-            color: #4f46e5;
+        .hero h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
         }
 
         .subjects {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #4f46e5;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            line-height: 1.6;
+        }
+
+        .ai-section {
+            background: #eef0ff;
+        }
+
+        .ai-box {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .ai-box h2 {
+            text-align: center;
+            color: #4f46e5;
+            margin-bottom: 10px;
+        }
+
+        .ai-box > p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 140px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            resize: vertical;
+            font-size: 16px;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #4f46e5;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
         }
 
         button {
             border: none;
-            padding: 13px 20px;
+            padding: 14px 20px;
             border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .ask-button {
             background: #4f46e5;
             color: white;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 5px;
+            flex: 1;
+        }
+
+        .clear-button {
+            background: #ddd;
+            color: #333;
         }
 
         button:hover {
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
-        .subject-button {
-            padding: 25px;
-            font-size: 18px;
-        }
-
-        input {
-            width: 80%;
-            max-width: 600px;
-            padding: 14px;
-            border: 1px solid #bbb;
+        #answer {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f7f7ff;
+            border-left: 5px solid #4f46e5;
             border-radius: 10px;
-            font-size: 16px;
-            margin: 15px 0;
+            line-height: 1.8;
+            white-space: pre-line;
         }
 
-        .answer {
-            margin-top: 20px;
-            padding: 15px;
-            background: #eef2ff;
-            border-radius: 10px;
-            font-weight: bold;
-            line-height: 1.6;
-        }
-
-        .back {
-            background: #555;
-            margin-top: 20px;
-        }
-
-        .welcome {
+        #thinking {
+            display: none;
             text-align: center;
+            margin-top: 20px;
+            color: #4f46e5;
+            font-weight: bold;
         }
 
-        .welcome h2 {
-            font-size: 28px;
-        }
-
-        .features {
-            margin-top: 30px;
+        .tips {
+            margin-top: 20px;
             text-align: left;
         }
 
-        .features p {
-            padding: 8px;
+        .tips li {
+            margin: 10px 0;
         }
 
         footer {
+            background: #222;
+            color: white;
             text-align: center;
             padding: 25px;
-            margin-top: 30px;
-            color: #666;
         }
 
         @media (max-width: 600px) {
 
-            .subjects {
-                grid-template-columns: 1fr;
+            header h1 {
+                font-size: 29px;
             }
 
-            input {
+            nav {
+                gap: 12px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .clear-button {
                 width: 100%;
-            }
-
-            .section {
-                padding: 20px;
             }
 
         }
@@ -171,674 +248,752 @@
 <body>
 
 
-<header>
+    <!-- HEADER -->
 
-    <h1>📚 Homework Helper</h1>
+    <header>
 
-    <p>Learn. Understand. Get your homework done.</p>
+        <h1>📚 Homework Helper</h1>
 
-</header>
+        <p>Your simple study companion</p>
 
-
-<nav>
-
-    <button onclick="showSection('home')">🏠 Home</button>
-
-    <button onclick="showSection('math')">📐 Mathematics</button>
-
-    <button onclick="showSection('science')">🔬 Science</button>
-
-    <button onclick="showSection('english')">📖 English</button>
-
-    <button onclick="showSection('computer')">💻 Computer</button>
-
-</nav>
+    </header>
 
 
+    <!-- NAVIGATION -->
 
-<div class="container">
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#helper">Homework Helper</a>
+
+        <a href="#math">Mathematics</a>
+
+        <a href="#science">Science</a>
+
+        <a href="#english">English</a>
+
+        <a href="#computer">Computer</a>
+
+    </nav>
 
 
     <!-- HOME -->
 
-    <div id="home" class="section">
+    <section id="home">
 
-        <div class="welcome">
+        <div class="container hero">
 
             <h2>Welcome to Homework Helper 👋</h2>
 
             <p>
                 Need help with your homework?
-                Choose a subject below and start learning.
+                Ask a question and Homework Helper
+                will try to help you understand it.
             </p>
 
-        </div>
+
+            <div class="subjects">
 
 
-        <div class="subjects">
+                <div class="card">
 
-            <button
-                class="subject-button"
-                onclick="showSection('math')">
+                    <h3>📐 Mathematics</h3>
 
-                📐 Mathematics
+                    <p>
+                        Get help with numbers,
+                        equations, multiplication,
+                        division and more.
+                    </p>
 
-            </button>
-
-
-            <button
-                class="subject-button"
-                onclick="showSection('science')">
-
-                🔬 Science
-
-            </button>
+                </div>
 
 
-            <button
-                class="subject-button"
-                onclick="showSection('english')">
+                <div class="card">
 
-                📖 English
+                    <h3>🔬 Science</h3>
 
-            </button>
+                    <p>
+                        Learn about biology,
+                        chemistry, physics and science.
+                    </p>
 
-
-            <button
-                class="subject-button"
-                onclick="showSection('computer')">
-
-                💻 Computer Studies
-
-            </button>
-
-        </div>
+                </div>
 
 
-        <div class="features">
+                <div class="card">
 
-            <h2>What can you do here?</h2>
+                    <h3>📖 English</h3>
 
-            <p>✅ Solve simple mathematics questions</p>
+                    <p>
+                        Learn grammar, vocabulary,
+                        nouns, verbs and more.
+                    </p>
 
-            <p>✅ Learn basic science concepts</p>
+                </div>
 
-            <p>✅ Understand English grammar</p>
 
-            <p>✅ Learn computer studies</p>
+                <div class="card">
 
-            <p>✅ Study and improve your knowledge</p>
+                    <h3>💻 Computer</h3>
+
+                    <p>
+                        Learn about computers,
+                        HTML, programming and technology.
+                    </p>
+
+                </div>
+
+
+            </div>
 
         </div>
 
-    </div>
+    </section>
+
+
+
+    <!-- HOMEWORK HELPER -->
+
+    <section id="helper" class="ai-section">
+
+        <div class="container">
+
+            <div class="ai-box">
+
+                <h2>🤖 Homework Helper</h2>
+
+                <p>
+                    Type your homework question below.
+                </p>
+
+
+                <textarea
+                    id="question"
+                    placeholder="Example: What is photosynthesis?"
+                ></textarea>
+
+
+                <div class="buttons">
+
+                    <button
+                        class="ask-button"
+                        onclick="answerQuestion()">
+
+                        Ask Question 🤖
+
+                    </button>
+
+
+                    <button
+                        class="clear-button"
+                        onclick="clearQuestion()">
+
+                        Clear
+
+                    </button>
+
+                </div>
+
+
+                <div id="thinking">
+
+                    🤔 Thinking...
+
+                </div>
+
+
+                <div id="answer"></div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
 
     <!-- MATHEMATICS -->
 
-    <div id="math" class="section">
+    <section id="math">
 
-        <h2>📐 Mathematics Helper</h2>
+        <div class="container">
 
-        <p>Enter a simple calculation.</p>
+            <div class="card">
 
-        <input
-            id="mathQuestion"
-            type="text"
-            placeholder="Example: What is 25 + 15?"
-        >
+                <h3>📐 Mathematics</h3>
 
-        <br>
+                <p>
+                    Mathematics is the study of numbers,
+                    quantities, shapes and patterns.
+                </p>
 
-        <button onclick="solveMath()">
-            Calculate
-        </button>
 
-        <button onclick="clearMath()">
-            Clear
-        </button>
+                <div class="tips">
 
-        <div id="mathAnswer" class="answer"></div>
+                    <h4>Topics include:</h4>
 
-    </div>
+                    <ul>
+
+                        <li>Algebra</li>
+
+                        <li>Quadratic equations</li>
+
+                        <li>Logarithms</li>
+
+                        <li>Fractions</li>
+
+                        <li>Geometry</li>
+
+                        <li>Percentages</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
 
     <!-- SCIENCE -->
 
-    <div id="science" class="section">
+    <section id="science">
 
-        <h2>🔬 Science Helper</h2>
+        <div class="container">
 
-        <p>Ask a basic science question.</p>
+            <div class="card">
 
-        <input
-            id="scienceQuestion"
-            type="text"
-            placeholder="Example: What is photosynthesis?"
-        >
+                <h3>🔬 Science</h3>
 
-        <br>
+                <p>
+                    Science helps us understand the world
+                    through observation and experiments.
+                </p>
 
-        <button onclick="scienceHelp()">
-            Get Answer
-        </button>
 
-        <button onclick="clearScience()">
-            Clear
-        </button>
+                <div class="tips">
 
-        <div id="scienceAnswer" class="answer"></div>
+                    <h4>Topics include:</h4>
 
-    </div>
+                    <ul>
+
+                        <li>Biology</li>
+
+                        <li>Chemistry</li>
+
+                        <li>Physics</li>
+
+                        <li>Cells</li>
+
+                        <li>Forces</li>
+
+                        <li>Energy</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
 
     <!-- ENGLISH -->
 
-    <div id="english" class="section">
+    <section id="english">
 
-        <h2>📖 English Helper</h2>
+        <div class="container">
 
-        <p>Ask an English question.</p>
+            <div class="card">
 
-        <input
-            id="englishQuestion"
-            type="text"
-            placeholder="Example: What is a noun?"
-        >
+                <h3>📖 English</h3>
 
-        <br>
+                <p>
+                    Improve your grammar,
+                    vocabulary and writing skills.
+                </p>
 
-        <button onclick="englishHelp()">
-            Get Answer
-        </button>
 
-        <button onclick="clearEnglish()">
-            Clear
-        </button>
+                <div class="tips">
 
-        <div id="englishAnswer" class="answer"></div>
+                    <h4>Topics include:</h4>
 
-    </div>
+                    <ul>
+
+                        <li>Nouns</li>
+
+                        <li>Verbs</li>
+
+                        <li>Adjectives</li>
+
+                        <li>Pronouns</li>
+
+                        <li>Adverbs</li>
+
+                        <li>Essay writing</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
 
     <!-- COMPUTER -->
 
-    <div id="computer" class="section">
+    <section id="computer">
 
-        <h2>💻 Computer Studies Helper</h2>
+        <div class="container">
 
-        <p>Ask a computer studies question.</p>
+            <div class="card">
 
-        <input
-            id="computerQuestion"
-            type="text"
-            placeholder="Example: What is CPU?"
-        >
+                <h3>💻 Computer Studies</h3>
 
-        <br>
+                <p>
+                    Learn about computers,
+                    programming and technology.
+                </p>
 
-        <button onclick="computerHelp()">
-            Get Answer
-        </button>
 
-        <button onclick="clearComputer()">
-            Clear
-        </button>
+                <div class="tips">
 
-        <div id="computerAnswer" class="answer"></div>
+                    <h4>Topics include:</h4>
 
-    </div>
+                    <ul>
 
+                        <li>CPU</li>
 
-</div>
+                        <li>RAM</li>
 
+                        <li>HTML</li>
 
+                        <li>Web browsers</li>
 
-<footer>
+                        <li>Programming</li>
 
-    <p>📚 Homework Helper</p>
+                        <li>Internet</li>
 
-    <p>Made for students who want to learn.</p>
+                    </ul>
 
-</footer>
+                </div>
 
+            </div>
 
+        </div>
 
-<script>
+    </section>
 
 
-    // =========================
-    // SECTION NAVIGATION
-    // =========================
 
-    function showSection(sectionName) {
+    <!-- FOOTER -->
 
-        let sections =
-            document.querySelectorAll(".section");
+    <footer>
 
-        sections.forEach(function(section) {
+        <p>© 2026 Homework Helper</p>
 
-            section.style.display = "none";
+        <p>Made for students 📚</p>
 
-        });
+    </footer>
 
 
-        document.getElementById(sectionName)
-            .style.display = "block";
 
-        window.scrollTo(0, 0);
-    }
+    <!-- JAVASCRIPT -->
 
+    <script>
 
 
-    // =========================
-    // MATHEMATICS
-    // =========================
+        function answerQuestion() {
 
-    function solveMath() {
 
-        let question =
-            document.getElementById("mathQuestion")
-            .value
-            .trim()
-            .toLowerCase();
+            const question =
+                document
+                .getElementById("question")
+                .value
+                .trim();
 
 
-        question =
-            question
-            .replace(/^what is\s+/i, "")
-            .replace(/\?$/, "")
-            .trim();
+            const answer =
+                document
+                .getElementById("answer");
 
 
-        let answer =
-            document.getElementById("mathAnswer");
+            const thinking =
+                document
+                .getElementById("thinking");
 
 
-        let match =
-            question.match(
-                /^(-?\d+(?:\.\d+)?)\s*([+\-×÷/])\s(-?\d+(?:\.\d+)?)$/
-            );
-
-
-        if (!match) {
-
-            answer.innerHTML =
-                "❌ Please enter a simple calculation.<br><br>" +
-                "Example: 25 + 15";
-
-            return;
-        }
-
-
-        let first =
-            Number(match[1]);
-
-        let operator =
-            match[2];
-
-        let second =
-            Number(match[3]);
-
-        let result;
-
-
-        if (operator === "+") {
-
-            result = first + second;
-
-        }
-
-
-        else if (operator === "-") {
-
-            result = first - second;
-
-        }
-
-
-        else if (
-            operator === "×" ||
-            operator === "*"
-        ) {
-
-            result = first * second;
-
-        }
-
-
-        else if (
-            operator === "÷" ||
-            operator === "/"
-        ) {
-
-            if (second === 0) {
+            if (question === "") {
 
                 answer.innerHTML =
-                    "❌ You cannot divide by zero.";
+                    "⚠️ Please type a question first.";
+
+                answer.style.display =
+                    "block";
 
                 return;
+
             }
 
 
-            result = first / second;
+            thinking.style.display =
+                "block";
+
+            answer.style.display =
+                "none";
+
+
+            setTimeout(function() {
+
+
+                let q =
+                    question.toLowerCase();
+
+
+                let result =
+                    getAnswer(q);
+
+
+                answer.innerHTML =
+                    result;
+
+                answer.style.display =
+                    "block";
+
+                thinking.style.display =
+                    "none";
+
+
+            }, 700);
 
         }
 
 
-        answer.innerHTML =
-            "✅ The answer is <strong>" +
-            result +
-            "</strong>.";
 
-    }
+        function getAnswer(q) {
 
 
-
-    function clearMath() {
-
-        document.getElementById("mathQuestion")
-            .value = "";
-
-        document.getElementById("mathAnswer")
-            .innerHTML = "";
-
-    }
+            /* MATHEMATICS */
 
 
+            if (
+                q.includes("what is 2 + 2") ||
+                q.includes("2+2")
+            ) {
 
-    // =========================
-    // SCIENCE
-    // =========================
+                return `
+                <strong>Answer:</strong><br><br>
+                2 + 2 = 4
+                `;
 
-    function scienceHelp() {
-
-        let question =
-            document.getElementById("scienceQuestion")
-            .value
-            .toLowerCase();
-
-
-        let answer =
-            document.getElementById("scienceAnswer");
+            }
 
 
-        if (question.includes("photosynthesis")) {
+            if (
+                q.includes("what is 5 x 6") ||
+                q.includes("5×6") ||
+                q.includes("5*6")
+            ) {
 
-            answer.innerHTML =
-                "🌱 <strong>Photosynthesis:</strong><br>" +
-                "Photosynthesis is the process by which green plants make their food using sunlight, water and carbon dioxide.";
+                return `
+                <strong>Answer:</strong><br><br>
+                5 × 6 = 30
+                `;
+
+            }
+
+
+            if (
+                q.includes("what is photosynthesis")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                Photosynthesis is the process by which
+                green plants make their food using
+                sunlight, carbon dioxide and water.
+
+                Oxygen is released during the process.
+                `;
+
+            }
+
+
+            if (
+                q.includes("what is a cell")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                A cell is the basic structural and
+                functional unit of life.
+                `;
+
+            }
+
+
+            if (
+                q.includes("what is force")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                Force is a push or pull that can change
+                the motion or shape of an object.
+
+                Formula:
+
+                Force = mass × acceleration
+                `;
+
+            }
+
+
+            if (
+                q.includes("what is an atom")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                An atom is the smallest unit of an
+                element that retains the chemical
+                properties of that element.
+                `;
+
+            }
+
+
+            /* ENGLISH */
+
+
+            if (
+                q.includes("what is a noun")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                A noun is a name of a person, animal,
+                place, thing or idea.
+
+                Example:
+                teacher, dog, Lagos, book.
+                `;
+
+            }
+
+
+            if (
+                q.includes("what is a verb")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                A verb is a word that shows an action
+                or state.
+
+                Examples:
+                run, eat, write, sleep.
+                `;
+
+            }
+
+
+            if (
+                q.includes("what is an adjective")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                An adjective is a word that describes
+                a noun or pronoun.
+
+                Example:
+                beautiful, tall, red, clever.
+                `;
+
+            }
+
+
+            if (
+                q.includes("what is a pronoun")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                A pronoun is a word used instead of
+                a noun.
+
+                Examples:
+                he, she, it, they, we.
+                `;
+
+            }
+
+
+            /* COMPUTER */
+
+
+            if (
+                q.includes("what is html")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                HTML means HyperText Markup Language.
+
+                It is used to create and structure
+                webpages.
+                `;
+
+            }
+
+
+            if (
+                q.includes("what is cpu")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                CPU means Central Processing Unit.
+
+                It is the main processor of a computer
+                and carries out instructions.
+                `;
+
+            }
+
+
+            if (
+                q.includes("what is ram")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                RAM means Random Access Memory.
+
+                It temporarily stores data and programs
+                that the computer is currently using.
+                `;
+
+            }
+
+
+            if (
+                q.includes("what is a browser")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                A web browser is software used to access
+                and view websites on the internet.
+
+                Examples include Chrome, Edge and Firefox.
+                `;
+
+            }
+
+
+            /* GENERAL QUESTIONS */
+
+
+            if (
+                q.includes("hello") ||
+                q.includes("hi")
+            ) {
+
+                return `
+                <strong>Hello! 👋</strong><br><br>
+
+                Welcome to Homework Helper!
+
+                Ask me a school question and I'll
+                try to help.
+                `;
+
+            }
+
+
+            if (
+                q.includes("who are you")
+            ) {
+
+                return `
+                <strong>Answer:</strong><br><br>
+
+                I am Homework Helper, a student-friendly
+                homework website.
+                `;
+
+            }
+
+
+            /* DEFAULT ANSWER */
+
+
+            return `
+                <strong>🤔 I don't have that question
+                in my current knowledge yet.</strong>
+
+                <br><br>
+
+                Try asking about:
+
+                <br><br>
+
+                📐 Mathematics<br>
+                🔬 Science<br>
+                📖 English<br>
+                💻 Computer Studies
+
+                <br><br>
+
+                Example:
+
+                <br>
+                "What is photosynthesis?"
+            `;
 
         }
 
 
-        else if (question.includes("cell")) {
 
-            answer.innerHTML =
-                "🔬 <strong>Cell:</strong><br>" +
-                "A cell is the basic structural and functional unit of a living organism.";
+        function clearQuestion() {
 
-        }
+            document
+                .getElementById("question")
+                .value = "";
 
-
-        else if (question.includes("force")) {
-
-            answer.innerHTML =
-                "💪 <strong>Force:</strong><br>" +
-                "Force is a push or pull that can change the motion of an object.";
+            document
+                .getElementById("answer")
+                .style.display = "none";
 
         }
 
 
-        else if (question.includes("water cycle")) {
-
-            answer.innerHTML =
-                "💧 <strong>Water Cycle:</strong><br>" +
-                "The water cycle is the continuous movement of water between the Earth's surface, atmosphere and underground.";
-
-        }
-
-
-        else if (question.includes("ecosystem")) {
-
-            answer.innerHTML =
-                "🌍 <strong>Ecosystem:</strong><br>" +
-                "An ecosystem is a community of living organisms interacting with one another and with their physical environment.";
-
-        }
-
-
-        else if (question.includes("atom")) {
-
-            answer.innerHTML =
-                "⚛️ <strong>Atom:</strong><br>" +
-                "An atom is the smallest unit of an element that retains the properties of that element.";
-
-        }
-
-
-        else {
-
-            answer.innerHTML =
-                "🤔 I don't know that question yet. Try asking about photosynthesis, cells, force, the water cycle, ecosystems or atoms.";
-
-        }
-
-    }
-
-
-
-    function clearScience() {
-
-        document.getElementById("scienceQuestion")
-            .value = "";
-
-        document.getElementById("scienceAnswer")
-            .innerHTML = "";
-
-    }
-
-
-
-    // =========================
-    // ENGLISH
-    // =========================
-
-    function englishHelp() {
-
-        let question =
-            document.getElementById("englishQuestion")
-            .value
-            .toLowerCase();
-
-
-        let answer =
-            document.getElementById("englishAnswer");
-
-
-        if (question.includes("noun")) {
-
-            answer.innerHTML =
-                "📖 <strong>Noun:</strong><br>" +
-                "A noun is a word used to name a person, place, animal, thing or idea.";
-
-        }
-
-
-        else if (question.includes("verb")) {
-
-            answer.innerHTML =
-                "✏️ <strong>Verb:</strong><br>" +
-                "A verb is a word that shows an action or state of being.";
-
-        }
-
-
-        else if (question.includes("adjective")) {
-
-            answer.innerHTML =
-                "📝 <strong>Adjective:</strong><br>" +
-                "An adjective is a word that describes or modifies a noun or pronoun.";
-
-        }
-
-
-        else if (question.includes("adverb")) {
-
-            answer.innerHTML =
-                "📚 <strong>Adverb:</strong><br>" +
-                "An adverb is a word that modifies a verb, adjective or another adverb.";
-
-        }
-
-
-        else if (question.includes("pronoun")) {
-
-            answer.innerHTML =
-                "👤 <strong>Pronoun:</strong><br>" +
-                "A pronoun is a word used in place of a noun.";
-
-        }
-
-
-        else if (question.includes("preposition")) {
-
-            answer.innerHTML =
-                "📌 <strong>Preposition:</strong><br>" +
-                "A preposition shows the relationship between a noun or pronoun and another word.";
-
-        }
-
-
-        else {
-
-            answer.innerHTML =
-                "🤔 I don't know that English question yet. Try asking about nouns, verbs, adjectives, adverbs, pronouns or prepositions.";
-
-        }
-
-    }
-
-
-
-    function clearEnglish() {
-
-        document.getElementById("englishQuestion")
-            .value = "";
-
-        document.getElementById("englishAnswer")
-            .innerHTML = "";
-
-    }
-
-
-
-    // =========================
-    // COMPUTER STUDIES
-    // =========================
-
-    function computerHelp() {
-
-        let question =
-            document.getElementById("computerQuestion")
-            .value
-            .toLowerCase();
-
-
-        let answer =
-            document.getElementById("computerAnswer");
-
-
-        if (question.includes("cpu")) {
-
-            answer.innerHTML =
-                "💻 <strong>CPU:</strong><br>" +
-                "CPU stands for Central Processing Unit. It processes instructions and controls the operations of a computer.";
-
-        }
-
-
-        else if (question.includes("html")) {
-
-            answer.innerHTML =
-                "🌐 <strong>HTML:</strong><br>" +
-                "HTML stands for HyperText Markup Language. It is used to structure content on web pages.";
-
-        }
-
-
-        else if (question.includes("browser")) {
-
-            answer.innerHTML =
-                "🌐 <strong>Web Browser:</strong><br>" +
-                "A web browser is software used to access and view websites on the internet.";
-
-        }
-
-
-        else if (question.includes("keyboard")) {
-
-            answer.innerHTML =
-                "⌨️ <strong>Keyboard:</strong><br>" +
-                "A keyboard is an input device used to enter text, numbers and commands into a computer.";
-
-        }
-
-
-        else if (question.includes("mouse")) {
-
-            answer.innerHTML =
-                "🖱️ <strong>Mouse:</strong><br>" +
-                "A mouse is a pointing input device used to control the pointer on a computer screen.";
-
-        }
-
-
-        else if (question.includes("ram")) {
-
-            answer.innerHTML =
-                "🧠 <strong>RAM:</strong><br>" +
-                "RAM stands for Random Access Memory. It temporarily stores data and programs being used by the computer.";
-
-        }
-
-
-        else if (question.includes("internet")) {
-
-            answer.innerHTML =
-                "🌍 <strong>Internet:</strong><br>" +
-                "The internet is a worldwide network that connects computers and other devices so they can communicate and share information.";
-
-        }
-
-
-        else {
-
-            answer.innerHTML =
-                "🤔 I don't know that Computer Studies question yet. Try asking about CPU, HTML, browsers, keyboard, mouse, RAM or the internet.";
-
-        }
-
-    }
-
-
-
-    function clearComputer() {
-
-        document.getElementById("computerQuestion")
-            .value = "";
-
-        document.getElementById("computerAnswer")
-            .innerHTML = "";
-
-    }
-
-
-</script>
+    </script>
 
 
 </body>
