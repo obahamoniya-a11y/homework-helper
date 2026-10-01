@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Homework Helper</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f7ff;
+            color: #222;
+        }
+
+        header {
+            background: #4f46e5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+        }
+
+        nav {
+            background: white;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        nav button {
+            background: none;
+            color: #4f46e5;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .section {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        #home {
+            display: block;
+        }
+
+        h2 {
+            color: #4f46e5;
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        button {
+            border: none;
+            padding: 13px 20px;
+            border-radius: 10px;
+            background: #4f46e5;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        .subject-button {
+            padding: 25px;
+            font-size: 18px;
+        }
+
+        input {
+            width: 80%;
+            max-width: 600px;
+            padding: 14px;
+            border: 1px solid #bbb;
+            border-radius: 10px;
+            font-size: 16px;
+            margin: 15px 0;
+        }
+
+        .answer {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eef2ff;
+            border-radius: 10px;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+
+        .back {
+            background: #555;
+            margin-top: 20px;
+        }
+
+        .welcome {
+            text-align: center;
+        }
+
+        .welcome h2 {
+            font-size: 28px;
+        }
+
+        .features {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .features p {
+            padding: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+
+            .subjects {
+                grid-template-columns: 1fr;
+            }
+
+            input {
+                width: 100%;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>📚 Homework Helper</h1>
+
+    <p>Learn. Understand. Get your homework done.</p>
+
+</header>
+
+
+<nav>
+
+    <button onclick="showSection('home')">🏠 Home</button>
+
+    <button onclick="showSection('math')">📐 Mathematics</button>
+
+    <button onclick="showSection('science')">🔬 Science</button>
+
+    <button onclick="showSection('english')">📖 English</button>
+
+    <button onclick="showSection('computer')">💻 Computer</button>
+
+</nav>
+
+
+
+<div class="container">
+
+
+    <!-- HOME -->
+
+    <div id="home" class="section">
+
+        <div class="welcome">
+
+            <h2>Welcome to Homework Helper 👋</h2>
+
+            <p>
+                Need help with your homework?
+                Choose a subject below and start learning.
+            </p>
+
+        </div>
+
+
+        <div class="subjects">
+
+            <button
+                class="subject-button"
+                onclick="showSection('math')">
+
+                📐 Mathematics
+
+            </button>
+
+
+            <button
+                class="subject-button"
+                onclick="showSection('science')">
+
+                🔬 Science
+
+            </button>
+
+
+            <button
+                class="subject-button"
+                onclick="showSection('english')">
+
+                📖 English
+
+            </button>
+
+
+            <button
+                class="subject-button"
+                onclick="showSection('computer')">
+
+                💻 Computer Studies
+
+            </button>
+
+        </div>
+
+
+        <div class="features">
+
+            <h2>What can you do here?</h2>
+
+            <p>✅ Solve simple mathematics questions</p>
+
+            <p>✅ Learn basic science concepts</p>
+
+            <p>✅ Understand English grammar</p>
+
+            <p>✅ Learn computer studies</p>
+
+            <p>✅ Study and improve your knowledge</p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MATHEMATICS -->
+
+    <div id="math" class="section">
+
+        <h2>📐 Mathematics Helper</h2>
+
+        <p>Enter a simple calculation.</p>
+
+        <input
+            id="mathQuestion"
+            type="text"
+            placeholder="Example: What is 25 + 15?"
+        >
+
+        <br>
+
+        <button onclick="solveMath()">
+            Calculate
+        </button>
+
+        <button onclick="clearMath()">
+            Clear
+        </button>
+
+        <div id="mathAnswer" class="answer"></div>
+
+    </div>
+
+
+
+    <!-- SCIENCE -->
+
+    <div id="science" class="section">
+
+        <h2>🔬 Science Helper</h2>
+
+        <p>Ask a basic science question.</p>
+
+        <input
+            id="scienceQuestion"
+            type="text"
+            placeholder="Example: What is photosynthesis?"
+        >
+
+        <br>
+
+        <button onclick="scienceHelp()">
+            Get Answer
+        </button>
+
+        <button onclick="clearScience()">
+            Clear
+        </button>
+
+        <div id="scienceAnswer" class="answer"></div>
+
+    </div>
+
+
+
+    <!-- ENGLISH -->
+
+    <div id="english" class="section">
+
+        <h2>📖 English Helper</h2>
+
+        <p>Ask an English question.</p>
+
+        <input
+            id="englishQuestion"
+            type="text"
+            placeholder="Example: What is a noun?"
+        >
+
+        <br>
+
+        <button onclick="englishHelp()">
+            Get Answer
+        </button>
+
+        <button onclick="clearEnglish()">
+            Clear
+        </button>
+
+        <div id="englishAnswer" class="answer"></div>
+
+    </div>
+
+
+
+    <!-- COMPUTER -->
+
+    <div id="computer" class="section">
+
+        <h2>💻 Computer Studies Helper</h2>
+
+        <p>Ask a computer studies question.</p>
+
+        <input
+            id="computerQuestion"
+            type="text"
+            placeholder="Example: What is CPU?"
+        >
+
+        <br>
+
+        <button onclick="computerHelp()">
+            Get Answer
+        </button>
+
+        <button onclick="clearComputer()">
+            Clear
+        </button>
+
+        <div id="computerAnswer" class="answer"></div>
+
+    </div>
+
+
+</div>
+
+
+
+<footer>
+
+    <p>📚 Homework Helper</p>
+
+    <p>Made for students who want to learn.</p>
+
+</footer>
+
+
+
+<script>
+
+
+    // =========================
+    // SECTION NAVIGATION
+    // =========================
+
+    function showSection(sectionName) {
+
+        let sections =
+            document.querySelectorAll(".section");
+
+        sections.forEach(function(section) {
+
+            section.style.display = "none";
+
+        });
+
+
+        document.getElementById(sectionName)
+            .style.display = "block";
+
+        window.scrollTo(0, 0);
+    }
+
+
+
+    // =========================
+    // MATHEMATICS
+    // =========================
+
+    function solveMath() {
+
+        let question =
+            document.getElementById("mathQuestion")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+        question =
+            question
+            .replace(/^what is\s+/i, "")
+            .replace(/\?$/, "")
+            .trim();
+
+
+        let answer =
+            document.getElementById("mathAnswer");
+
+
+        let match =
+            question.match(
+                /^(-?\d+(?:\.\d+)?)\s*([+\-×÷/])\s(-?\d+(?:\.\d+)?)$/
+            );
+
+
+        if (!match) {
+
+            answer.innerHTML =
+                "❌ Please enter a simple calculation.<br><br>" +
+                "Example: 25 + 15";
+
+            return;
+        }
+
+
+        let first =
+            Number(match[1]);
+
+        let operator =
+            match[2];
+
+        let second =
+            Number(match[3]);
+
+        let result;
+
+
+        if (operator === "+") {
+
+            result = first + second;
+
+        }
+
+
+        else if (operator === "-") {
+
+            result = first - second;
+
+        }
+
+
+        else if (
+            operator === "×" ||
+            operator === "*"
+        ) {
+
+            result = first * second;
+
+        }
+
+
+        else if (
+            operator === "÷" ||
+            operator === "/"
+        ) {
+
+            if (second === 0) {
+
+                answer.innerHTML =
+                    "❌ You cannot divide by zero.";
+
+                return;
+            }
+
+
+            result = first / second;
+
+        }
+
+
+        answer.innerHTML =
+            "✅ The answer is <strong>" +
+            result +
+            "</strong>.";
+
+    }
+
+
+
+    function clearMath() {
+
+        document.getElementById("mathQuestion")
+            .value = "";
+
+        document.getElementById("mathAnswer")
+            .innerHTML = "";
+
+    }
+
+
+
+    // =========================
+    // SCIENCE
+    // =========================
+
+    function scienceHelp() {
+
+        let question =
+            document.getElementById("scienceQuestion")
+            .value
+            .toLowerCase();
+
+
+        let answer =
+            document.getElementById("scienceAnswer");
+
+
+        if (question.includes("photosynthesis")) {
+
+            answer.innerHTML =
+                "🌱 <strong>Photosynthesis:</strong><br>" +
+                "Photosynthesis is the process by which green plants make their food using sunlight, water and carbon dioxide.";
+
+        }
+
+
+        else if (question.includes("cell")) {
+
+            answer.innerHTML =
+                "🔬 <strong>Cell:</strong><br>" +
+                "A cell is the basic structural and functional unit of a living organism.";
+
+        }
+
+
+        else if (question.includes("force")) {
+
+            answer.innerHTML =
+                "💪 <strong>Force:</strong><br>" +
+                "Force is a push or pull that can change the motion of an object.";
+
+        }
+
+
+        else if (question.includes("water cycle")) {
+
+            answer.innerHTML =
+                "💧 <strong>Water Cycle:</strong><br>" +
+                "The water cycle is the continuous movement of water between the Earth's surface, atmosphere and underground.";
+
+        }
+
+
+        else if (question.includes("ecosystem")) {
+
+            answer.innerHTML =
+                "🌍 <strong>Ecosystem:</strong><br>" +
+                "An ecosystem is a community of living organisms interacting with one another and with their physical environment.";
+
+        }
+
+
+        else if (question.includes("atom")) {
+
+            answer.innerHTML =
+                "⚛️ <strong>Atom:</strong><br>" +
+                "An atom is the smallest unit of an element that retains the properties of that element.";
+
+        }
+
+
+        else {
+
+            answer.innerHTML =
+                "🤔 I don't know that question yet. Try asking about photosynthesis, cells, force, the water cycle, ecosystems or atoms.";
+
+        }
+
+    }
+
+
+
+    function clearScience() {
+
+        document.getElementById("scienceQuestion")
+            .value = "";
+
+        document.getElementById("scienceAnswer")
+            .innerHTML = "";
+
+    }
+
+
+
+    // =========================
+    // ENGLISH
+    // =========================
+
+    function englishHelp() {
+
+        let question =
+            document.getElementById("englishQuestion")
+            .value
+            .toLowerCase();
+
+
+        let answer =
+            document.getElementById("englishAnswer");
+
+
+        if (question.includes("noun")) {
+
+            answer.innerHTML =
+                "📖 <strong>Noun:</strong><br>" +
+                "A noun is a word used to name a person, place, animal, thing or idea.";
+
+        }
+
+
+        else if (question.includes("verb")) {
+
+            answer.innerHTML =
+                "✏️ <strong>Verb:</strong><br>" +
+                "A verb is a word that shows an action or state of being.";
+
+        }
+
+
+        else if (question.includes("adjective")) {
+
+            answer.innerHTML =
+                "📝 <strong>Adjective:</strong><br>" +
+                "An adjective is a word that describes or modifies a noun or pronoun.";
+
+        }
+
+
+        else if (question.includes("adverb")) {
+
+            answer.innerHTML =
+                "📚 <strong>Adverb:</strong><br>" +
+                "An adverb is a word that modifies a verb, adjective or another adverb.";
+
+        }
+
+
+        else if (question.includes("pronoun")) {
+
+            answer.innerHTML =
+                "👤 <strong>Pronoun:</strong><br>" +
+                "A pronoun is a word used in place of a noun.";
+
+        }
+
+
+        else if (question.includes("preposition")) {
+
+            answer.innerHTML =
+                "📌 <strong>Preposition:</strong><br>" +
+                "A preposition shows the relationship between a noun or pronoun and another word.";
+
+        }
+
+
+        else {
+
+            answer.innerHTML =
+                "🤔 I don't know that English question yet. Try asking about nouns, verbs, adjectives, adverbs, pronouns or prepositions.";
+
+        }
+
+    }
+
+
+
+    function clearEnglish() {
+
+        document.getElementById("englishQuestion")
+            .value = "";
+
+        document.getElementById("englishAnswer")
+            .innerHTML = "";
+
+    }
+
+
+
+    // =========================
+    // COMPUTER STUDIES
+    // =========================
+
+    function computerHelp() {
+
+        let question =
+            document.getElementById("computerQuestion")
+            .value
+            .toLowerCase();
+
+
+        let answer =
+            document.getElementById("computerAnswer");
+
+
+        if (question.includes("cpu")) {
+
+            answer.innerHTML =
+                "💻 <strong>CPU:</strong><br>" +
+                "CPU stands for Central Processing Unit. It processes instructions and controls the operations of a computer.";
+
+        }
+
+
+        else if (question.includes("html")) {
+
+            answer.innerHTML =
+                "🌐 <strong>HTML:</strong><br>" +
+                "HTML stands for HyperText Markup Language. It is used to structure content on web pages.";
+
+        }
+
+
+        else if (question.includes("browser")) {
+
+            answer.innerHTML =
+                "🌐 <strong>Web Browser:</strong><br>" +
+                "A web browser is software used to access and view websites on the internet.";
+
+        }
+
+
+        else if (question.includes("keyboard")) {
+
+            answer.innerHTML =
+                "⌨️ <strong>Keyboard:</strong><br>" +
+                "A keyboard is an input device used to enter text, numbers and commands into a computer.";
+
+        }
+
+
+        else if (question.includes("mouse")) {
+
+            answer.innerHTML =
+                "🖱️ <strong>Mouse:</strong><br>" +
+                "A mouse is a pointing input device used to control the pointer on a computer screen.";
+
+        }
+
+
+        else if (question.includes("ram")) {
+
+            answer.innerHTML =
+                "🧠 <strong>RAM:</strong><br>" +
+                "RAM stands for Random Access Memory. It temporarily stores data and programs being used by the computer.";
+
+        }
+
+
+        else if (question.includes("internet")) {
+
+            answer.innerHTML =
+                "🌍 <strong>Internet:</strong><br>" +
+                "The internet is a worldwide network that connects computers and other devices so they can communicate and share information.";
+
+        }
+
+
+        else {
+
+            answer.innerHTML =
+                "🤔 I don't know that Computer Studies question yet. Try asking about CPU, HTML, browsers, keyboard, mouse, RAM or the internet.";
+
+        }
+
+    }
+
+
+
+    function clearComputer() {
+
+        document.getElementById("computerQuestion")
+            .value = "";
+
+        document.getElementById("computerAnswer")
+            .innerHTML = "";
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>
